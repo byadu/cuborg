@@ -14,8 +14,6 @@ analyze<- function(input, output, session, id) {
 			xr$mselnames<- xmsel(xr$mselnames, input$id1)
 			xr$mselids<- lookupid(M, isolate(xr$mselnames), 'm')
 			dimgrp<- xgetdims(M$cfg, isolate(xr$mselids))
-			print('obsev id1')
-			print(dimgrp)
 			if(!is.null(dimgrp))
 				xdilist<<- xmakepicklist(M$cfg, dimgrp)
 			xr$dimgrp<- dimgrp
@@ -104,9 +102,9 @@ analyze<- function(input, output, session, id) {
 		}
 	output$rd<- renderUI({
 		req(rg$g)
-		rg$g$gp$gtype<- xr$gtype
 cat('rd', isolate(xr$gtype), 'gt', isolate(rg$g$gp$gtype), '\n')
-print(rg$g)
+		if(!is.null(xr$gtype))
+			rg$g$gp$gtype<- xr$gtype
 		a<- chartUI(ns('adhoc'), rg$g)
 		callModule(chart, 'adhoc', rg$g)
 	#	adhocinit<<- 0

@@ -18,9 +18,24 @@ reportscharts<- function() {
 					my_j<- j
 					repid<- as.character(rl[my_j,1])
 					output[[repid]]<- renderUI({
-						g<- setrepid(M$cfg, repid)
+						cfg<- M$cfg
+						g<- setrepid(cfg, repid)
+						gp<- g$gp
 						rg$g<- g
-						xr$gtype<- NULL
+	xr$dimgrp<- xgetdims(cfg, gp$measures)
+	xr$mselids<- gp$measures
+	xr$dselids<- gp$dims
+	xr$dselnames<- getmnames(M$mt$dimensions, gp$dims)
+	xr$mselnames<- getmnames(M$mt$measures, gp$measures)
+
+	f<- g$f
+	if(!is.null(f))
+	for(i in 1:length(f)) {
+		fitem<- f[[i]][[1]]
+		fvals<- f[[i]][[2]]
+		addfilter(fitem$fh_itemid, fvals, fitem$fh_excl)
+		}
+
 	#	rg$g$gp$gtype<- xr$gtype
 						if(!is.null(g)) {
 #							callModule(chart, repid, 1, g)
