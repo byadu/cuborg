@@ -14,8 +14,10 @@ analyze<- function(input, output, session, id) {
 			xr$mselnames<- xmsel(xr$mselnames, input$id1)
 			xr$mselids<- lookupid(M, isolate(xr$mselnames), 'm')
 			dimgrp<- xgetdims(M$cfg, isolate(xr$mselids))
+			print('obsev id1')
+			print(dimgrp)
 			if(!is.null(dimgrp))
-				xdilist<<- xmakepicklist(M, dimgrp)
+				xdilist<<- xmakepicklist(M$cfg, dimgrp)
 			xr$dimgrp<- dimgrp
 			}
 		updatePickerInput(session, "id2", choices=xdilist, selected=isolate(input$id2)) 
@@ -35,7 +37,7 @@ analyze<- function(input, output, session, id) {
 			xr$dselids<- lookupid(M, isolate(xr$dselnames), 'd')
 			measgrp<- xgetmeas(M$cfg, isolate(xr$dselids))
 			if(!is.null(measgrp))
-				milist<- xmakepicklist(M, measgrp)
+				milist<- xmakepicklist(M$cfg, measgrp)
 			xr$measgrp<- measgrp
 			}
 		updatePickerInput(session, "id1", choices=milist, selected=isolate(input$id1)) 
@@ -104,8 +106,9 @@ analyze<- function(input, output, session, id) {
 		req(rg$g)
 		rg$g$gp$gtype<- xr$gtype
 cat('rd', isolate(xr$gtype), 'gt', isolate(rg$g$gp$gtype), '\n')
+print(rg$g)
 		a<- chartUI(ns('adhoc'), rg$g)
-		callModule(chart, 'adhoc', adhocinit, rg$g)
+		callModule(chart, 'adhoc', rg$g)
 	#	adhocinit<<- 0
 		a
 		})

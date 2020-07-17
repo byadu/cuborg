@@ -2,10 +2,10 @@ initcfg<- function(configdb, configdbuser, uid) {
 
 	loginuser<- function(cfg, uid) {
 		# select distinct md_table from menu_dtls where md_id in (select mt_id from menu_trees,login_tree where lt_uid='stat' and lt_role=mt_role);
-		my_role<- as.data.frame(dplyr::filter(cfg$login_tree, lt_uid==!!uid))$lt_role
-		my_mt<- as.data.frame(dplyr::filter(cfg$menu_trees, mt_role %in% !!my_role))$mt_id
-		my_mt<- as.data.frame(dplyr::filter(cfg$menu_trees, mt_role %in% !!my_role))$mt_id
-		my_tabs<- unique(as.data.frame(dplyr::filter(cfg$menu_dtls, md_id %in% my_mt))$md_table)
+		my_role<- as.data.frame(filter(cfg$login_tree, lt_uid==!!uid))$lt_role
+		my_mt<- as.data.frame(filter(cfg$menu_trees, mt_role %in% !!my_role))$mt_id
+		my_mt<- as.data.frame(filter(cfg$menu_trees, mt_role %in% !!my_role))$mt_id
+		my_tabs<- unique(as.data.frame(filter(cfg$menu_dtls, md_id %in% my_mt))$md_table)
 		return(list(mt=my_mt, tabs=my_tabs))
 		}
 
