@@ -1,2 +1,2 @@
 # cuborg
-![cuborg gif](./inst/extdata/cuborg1.gif)
+![cuborg gif](./inst/extdata/cuborg.gif)
