@@ -11,6 +11,7 @@ library(RMySQL)
 library(lazyeval)
 library(dplyr)
 library(reshape2)
+library(DT)
 uid<-NULL
 
 #convertMenuItem <- function(mi,tabName) {

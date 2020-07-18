@@ -100,13 +100,24 @@ analyze<- function(input, output, session, id) {
 		isolate(updatePickerInput(session, "id1", choices=M$mt$milist, selected=NULL))
 		isolate(updatePickerInput(session, "id2", choices=M$mt$dilist, selected=NULL))
 		}
+
+	setdrill<- function(g, rows_selected) {
+		if(is.null(g)) return
+		
+		for(i in 1:g$gp$gfdim) {
+			drillid<- as.character(g$gp$dim[i])
+			drillval<- unique(as.character(g$dxy[rows_selected,i]))
+			addfilter(drillid, drillval, F)
+			}
+		}
+
 	output$rd<- renderUI({
 		req(rg$g)
 cat('rd', isolate(xr$gtype), 'gt', isolate(rg$g$gp$gtype), '\n')
 		if(!is.null(xr$gtype))
 			rg$g$gp$gtype<- xr$gtype
 		a<- chartUI(ns('adhoc'), rg$g)
-		callModule(chart, 'adhoc', rg$g)
+		callModule(chart, 'adhoc', rg$g, setdrill=setdrill)
 	#	adhocinit<<- 0
 		a
 		})

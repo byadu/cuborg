@@ -8,12 +8,12 @@ options(shiny.maxRequestSize=40*1024^2)
 
 	source("initapp.R", local=T)
 	initsession<- function() {
-		q<- parseQueryString("cfgdb=aviso&datadb=aviso")
+		q<- parseQueryString("cfgdb=imf&datadb=imf")
 		q2<-parseQueryString(isolate(session$clientData$url_search))
 		if(!is.null(q2) & length(q2)>0)
 			q<- q2
 	
-		uid<-'yadu'
+		uid<-'ceo'
 		if(!is.null(q$uid))
 			uid<- q$uid
 	

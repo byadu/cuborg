@@ -12,7 +12,10 @@ output$sidemenu<- renderMenu({
 #	if(input$rdi=="Data")
 #		sidebarMenu(m4,m5)
 #	else if(input$rdi == "Reports")
+	if(!is.null(m2))
 		sidebarMenu(m3, do.call(menuItem, m1), do.call(menuItem, m2))
+	else
+		sidebarMenu(m3)
 #	else if(input$rdi=="Insights")
 #		sidebarMenu(m6)
 	})
@@ -73,7 +76,10 @@ output$mainbody<- renderUI({
 	t6<- list(); t6[[1]]<- tabItem(tabName="MD", uiOutput("menudtls"))
 	t7<- list(); t7[[1]]<- tabItem(tabName="fromdb", uiOutput("fromdb"))
 	t8<- list(); t8[[1]]<- tabItem(tabName="fromxl", uiOutput("fromxl"))
-	do.call(tabItems, c(t1,t2,t3,t4,t5,t6,t7,t8))
+	if(!is.null(t2))
+		do.call(tabItems, c(t1,t2,t3,t4,t5,t6,t7,t8))
+	else
+		do.call(tabItems, c(t3,t4,t5,t6,t7,t8))
 	})
 
 output$filtersmain<- renderUI({

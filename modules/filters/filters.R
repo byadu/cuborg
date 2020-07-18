@@ -91,7 +91,9 @@ filters<- function(input, output, session) {
 filtersUI<- function(id, dimgrp) {
 	ns<- NS(id)
 
-	flist<- xmakepicklist(M, dimgrp)
+	print(dimgrp)
+	flist<- xmakepicklist(M$cfg, dimgrp)
+print(2)
 	fluidPage(
 #	box(title='Filter On', status='info', width=12, closable=F,
 		pickerInput(inputId=ns("id3"), multiple=F, label=NULL, selected='',
@@ -101,7 +103,7 @@ filtersUI<- function(id, dimgrp) {
 		),
 	tags$style(".card .avatar {max-width: 0em; max-height:0em; margin-top:0em;}"),
 	tags$style(".card .card-background-1 {height: 0em;}"),
-	flipBox(width=12, id=1, front_title='Select a Filter', back_title='Create a New Filter', front_btn_text='Create Filter', back_btn_text='Select Filter',
+	flipBox(width=12, id=1, main_img='blank.jpg', front_title='Select a Filter', back_title='Create a New Filter', front_btn_text='Create Filter', back_btn_text='Select Filter',
 	tags$div(dataTableOutput(ns('savedfils')),br(),br(),br()),
 	back_content=
 		fluidPage(
