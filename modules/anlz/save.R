@@ -10,6 +10,7 @@ savereport<- function(input, output, session, g, currfilt) {
 			foldid<- addfolder(foldid, uid, M)
 		else
 			foldid<- as.numeric(foldid)
+		g$gp$gtype<- isolate(cr$gtype)
 		gfid<- addgraph(repname, foldid, g, currfilt, M)
 		rr$repchanged<- isolate(rr$repchanged)+1
 		createAlert(session, ns("saved"), ns("alsaved"), title="", content=paste("Report", strong(repname), "saved in folder", strong(foldername(M$cfg, foldid))))

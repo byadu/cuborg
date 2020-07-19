@@ -113,11 +113,14 @@ analyze<- function(input, output, session, id) {
 
 	output$rd<- renderUI({
 		req(rg$g)
+		print(isolate(cr$gtype))
 cat('rd', isolate(xr$gtype), 'gt', isolate(rg$g$gp$gtype), '\n')
-		if(!is.null(xr$gtype))
-			rg$g$gp$gtype<- xr$gtype
 		a<- chartUI(ns('adhoc'), rg$g)
 		callModule(chart, 'adhoc', rg$g, setdrill=setdrill)
+		print(isolate(cr$gtype))
+	#	print(gtype)
+	#	if(!is.null(xr$gtype))
+	#		rg$g$gp$gtype<- gtype
 	#	adhocinit<<- 0
 		a
 		})

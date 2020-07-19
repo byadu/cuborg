@@ -11,8 +11,8 @@ dashboard<- function(input, output, session, dashid) {
 			output[[repid]]<- renderUI({
 				g<- setrepid(M$cfg, repid)
 				if(!is.null(g)) {
-					callModule(chart, repid, 1, g, dash=1)
-					chartUI(ns(repid), g, dash=1)
+					callModule(chart, repid, g, noopt=1)
+					chartUI(ns(repid), g, noopt=1)
 					}
 				})
 			})
