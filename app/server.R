@@ -38,11 +38,6 @@ options(shiny.maxRequestSize=40*1024^2)
 
 	source("main.R", local=T)
 
-	rr<- reactiveValues(repchanged=0, reportrow=0)
-	source("../modules/filters/filters.R", local=T)
-	source("../modules/anlz/anlz.R", local=T)
-	source("../modules/report/reps.R", local=T)
-	source("../modules/dash/dash.R", local=T)
-	source("../modules/dmodel/dmodel.R", local=T)
-	source("../modules/ingest/ingest.R", local=T)
+#	source("../modules/dmodel/dmodel.R", local=T)
+#	source("../modules/ingest/ingest.R", local=T)
 	})

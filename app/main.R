@@ -1,6 +1,6 @@
 output$sidemenu<- renderMenu({
-	m1<- repside() 
-	m2<- dashside()
+	m1<- repside(M) 
+	m2<- dashside(M)
 	m3<- menuItem( "Explorer", menuSubItem("Create Reports", tabName="BI"))
 	m6<- menuItem( "Insights", menuSubItem("Analytics", tabName="AI"))
 	m4<- menuItem( "Data Model", menuSubItem(" Table Joins", tabName="Joins"), menuSubItem("Metrics and Attributes", tabName="MD"))
@@ -21,8 +21,8 @@ output$sidemenu<- renderMenu({
 	})
 
 output$analyze<- renderUI({
-	a<-analyzeUI(ns('main'))
-	callModule(analyze, 'main')
+	a<-analyzeUI(ns('main'), M)
+	callModule(analyze, 'main', M, D, uid)
 	a
 	})
 
@@ -68,8 +68,8 @@ output$distPlot <- renderPlot({
   })
 
 output$mainbody<- renderUI({
-	t1<- dashboards()
-	t2<- reportscharts()
+	t1<- dashboards(input, output, session, M)
+	t2<- reportscharts(input, output, M, D, uid)
 	t3<- list(); t3[[1]]<- tabItem(tabName="BI", uiOutput('analyze'))
 	t4<- list(); t4[[1]]<- tabItem(tabName="AI", plotOutput("distPlot"))
 	t5<- list(); t5[[1]]<- tabItem(tabName="Joins", uiOutput("dmodel"))
